@@ -1,0 +1,52 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+type question690 struct {
+	para690
+	ans690
+}
+
+// para 是参数
+// one 代表第一个参数
+type para690 struct {
+	employees []*Employee
+	id        int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans690 struct {
+	one int
+}
+
+func Test_Problem690(t *testing.T) {
+
+	qs := []question690{
+
+		{
+			para690{[]*Employee{{1, 5, []int{2, 3}}, {2, 3, []int{}}, {3, 3, []int{}}}, 1},
+			ans690{11},
+		},
+		// subordinate id 99 has no matching employee, exercising the nil guard
+		{
+			para690{[]*Employee{{1, 5, []int{99}}}, 1},
+			ans690{5},
+		},
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 690------------------------\n")
+
+	for _, q := range qs {
+		a, p := q.ans690, q.para690
+		got := getImportance(p.employees, p.id)
+		if got != a.one {
+			t.Fatalf("input %v: got %v, want %v", p, got, a.one)
+		}
+		fmt.Printf("【input】:%v       【output】:%v\n", p, got)
+	}
+	fmt.Printf("\n\n\n")
+}

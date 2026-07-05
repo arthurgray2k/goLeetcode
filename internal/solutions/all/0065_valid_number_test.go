@@ -1,0 +1,56 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+func Test_Problem65(t *testing.T) {
+
+	tcs := []struct {
+		s   string
+		ans bool
+	}{
+
+		{
+			"0",
+			true,
+		},
+
+		{
+			"e",
+			false,
+		},
+
+		{
+			".",
+			false,
+		},
+
+		{
+			".1",
+			true,
+		},
+
+		{
+			"2e10",
+			true,
+		},
+
+		{
+			"-90E3",
+			true,
+		},
+
+		{
+			"+6e-1",
+			true,
+		},
+	}
+	fmt.Printf("------------------------Leetcode Problem 65------------------------\n")
+
+	for _, tc := range tcs {
+		fmt.Printf("【input】:%v       【output】:%v\n", tc, isNumber(tc.s))
+	}
+	fmt.Printf("\n\n\n")
+}

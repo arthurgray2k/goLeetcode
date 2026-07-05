@@ -1,0 +1,63 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+type question984 struct {
+	para984
+	ans984
+}
+
+// para 是参数
+// one 代表第一个参数
+type para984 struct {
+	a int
+	b int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans984 struct {
+	one string
+}
+
+func Test_Problem984(t *testing.T) {
+
+	qs := []question984{
+
+		{
+			para984{1, 2},
+			ans984{"abb"},
+		},
+
+		{
+			para984{4, 1},
+			ans984{"aabaa"},
+		},
+
+		{
+			para984{1, 1},
+			ans984{"ba"},
+		},
+
+		{
+			para984{2, 5},
+			ans984{"bbabbab"},
+		},
+
+		{
+			para984{3, 4},
+			ans984{"bbabbababa"},
+		},
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 984------------------------\n")
+
+	for _, q := range qs {
+		_, p := q.ans984, q.para984
+		fmt.Printf("【input】:%v       【output】:%v\n", p, strWithout3a3b(p.a, p.b))
+	}
+	fmt.Printf("\n\n\n")
+}

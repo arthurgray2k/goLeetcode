@@ -1,0 +1,53 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+type question372 struct {
+	para372
+	ans372
+}
+
+// para 是参数
+// one 代表第一个参数
+type para372 struct {
+	a int
+	b []int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans372 struct {
+	one int
+}
+
+func Test_Problem372(t *testing.T) {
+
+	qs := []question372{
+
+		{
+			para372{2, []int{3}},
+			ans372{8},
+		},
+
+		{
+			para372{2, []int{1, 0}},
+			ans372{1024},
+		},
+		// 如需多个测试，可以复制上方元素。
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 372------------------------\n")
+
+	for _, q := range qs {
+		_, p := q.ans372, q.para372
+		got := superPow(p.a, p.b)
+		if got1 := superPow1(p.a, p.b); got1 != got {
+			t.Fatalf("superPow1(%d, %v) = %d, want %d", p.a, p.b, got1, got)
+		}
+		fmt.Printf("【input】:%v       【output】:%v\n", p, got)
+	}
+	fmt.Printf("\n\n\n")
+}

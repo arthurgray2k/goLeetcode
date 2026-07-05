@@ -1,0 +1,55 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+type question793 struct {
+	para793
+	ans793
+}
+
+// para 是参数
+// one 代表第一个参数
+type para793 struct {
+	one int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans793 struct {
+	one int
+}
+
+func Test_Problem793(t *testing.T) {
+
+	qs := []question793{
+
+		{
+			para793{0},
+			ans793{5},
+		},
+
+		{
+			para793{5},
+			ans793{0},
+		},
+
+		{
+			para793{6},
+			ans793{5},
+		},
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 793------------------------\n")
+
+	for _, q := range qs {
+		a, p := q.ans793, q.para793
+		fmt.Printf("【input】:%v       【output】:%v\n", p, preimageSizeFZF(p.one))
+		if got := preimageSizeFZF1(p.one); got != a.one {
+			t.Fatalf("preimageSizeFZF1(%d) = %d, want %d", p.one, got, a.one)
+		}
+	}
+	fmt.Printf("\n\n\n")
+}

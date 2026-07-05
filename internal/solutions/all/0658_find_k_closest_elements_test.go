@@ -1,0 +1,62 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+type question658 struct {
+	para658
+	ans658
+}
+
+// para 是参数
+// one 代表第一个参数
+type para658 struct {
+	arr []int
+	k   int
+	x   int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans658 struct {
+	one []int
+}
+
+func Test_Problem658(t *testing.T) {
+
+	qs := []question658{
+
+		{
+			para658{[]int{1, 2, 3, 4, 5}, 4, 3},
+			ans658{[]int{1, 2, 3, 4}},
+		},
+
+		{
+			para658{[]int{1, 2, 3, 4, 5}, 4, -1},
+			ans658{[]int{1, 2, 3, 4}},
+		},
+
+		{
+			para658{[]int{1, 2, 3, 4, 5}, 4, 100},
+			ans658{[]int{2, 3, 4, 5}},
+		},
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 658------------------------\n")
+
+	for _, q := range qs {
+		a, p := q.ans658, q.para658
+		out := findClosestElements(p.arr, p.k, p.x)
+		fmt.Printf("【input】:%v       【output】:%v\n", p, out)
+		out1 := findClosestElements1(p.arr, p.k, p.x)
+		if fmt.Sprintf("%v", out) != fmt.Sprintf("%v", a.one) {
+			t.Fatalf("findClosestElements(%v) = %v, want %v", p, out, a.one)
+		}
+		if fmt.Sprintf("%v", out1) != fmt.Sprintf("%v", a.one) {
+			t.Fatalf("findClosestElements1(%v) = %v, want %v", p, out1, a.one)
+		}
+	}
+	fmt.Printf("\n\n\n")
+}

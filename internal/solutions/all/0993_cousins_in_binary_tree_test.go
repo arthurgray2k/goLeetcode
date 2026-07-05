@@ -1,0 +1,78 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/halfrost/LeetCode-Go/structures"
+)
+
+type question993 struct {
+	para993
+	ans993
+}
+
+// para 是参数
+// one 代表第一个参数
+type para993 struct {
+	one []int
+	x   int
+	y   int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans993 struct {
+	one bool
+}
+
+func Test_Problem993(t *testing.T) {
+
+	qs := []question993{
+
+		{
+			para993{[]int{1, 2, 3, 4}, 4, 3},
+			ans993{false},
+		},
+
+		{
+			para993{[]int{1, 2, 3, structures.NULL, 4, structures.NULL, 5}, 5, 4},
+			ans993{true},
+		},
+
+		{
+			para993{[]int{1, 2, 3, structures.NULL, 4}, 2, 3},
+			ans993{false},
+		},
+
+		{
+			para993{[]int{}, 1, 2},
+			ans993{false},
+		},
+
+		{
+			para993{[]int{1, 2, 3, 4}, 4, 9},
+			ans993{false},
+		},
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 993------------------------\n")
+
+	for _, q := range qs {
+		a, p := q.ans993, q.para993
+		fmt.Printf("【input】:%v      ", p)
+		root := structures.Ints2TreeNode(p.one)
+		got := isCousins(root, p.x, p.y)
+		fmt.Printf("【output】:%v      \n", got)
+		if got != a.one {
+			t.Fatalf("isCousins(%v, %d, %d) = %v, want %v", p.one, p.x, p.y, got, a.one)
+		}
+		if gotBFS := isCousinsBFS(root, p.x, p.y); gotBFS != a.one {
+			t.Fatalf("isCousinsBFS(%v, %d, %d) = %v, want %v", p.one, p.x, p.y, gotBFS, a.one)
+		}
+		if gotDFS := isCousinsDFS(root, p.x, p.y); gotDFS != a.one {
+			t.Fatalf("isCousinsDFS(%v, %d, %d) = %v, want %v", p.one, p.x, p.y, gotDFS, a.one)
+		}
+	}
+	fmt.Printf("\n\n\n")
+}

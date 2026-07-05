@@ -1,0 +1,64 @@
+package all
+
+import (
+	"fmt"
+	"testing"
+)
+
+type question547 struct {
+	para547
+	ans547
+}
+
+// para 是参数
+// one 代表第一个参数
+type para547 struct {
+	one [][]int
+}
+
+// ans 是答案
+// one 代表第一个答案
+type ans547 struct {
+	one int
+}
+
+func Test_Problem547(t *testing.T) {
+
+	qs := []question547{
+
+		{
+			para547{[][]int{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}},
+			ans547{3},
+		},
+
+		{
+			para547{[][]int{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}},
+			ans547{2},
+		},
+
+		{
+			para547{[][]int{{1, 1, 0}, {1, 1, 1}, {0, 1, 1}}},
+			ans547{1},
+		},
+
+		{
+			para547{[][]int{}},
+			ans547{0},
+		},
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 547------------------------\n")
+
+	for _, q := range qs {
+		a, p := q.ans547, q.para547
+		ret := findCircleNum(p.one)
+		fmt.Printf("【input】:%v       【output】:%v\n", p, ret)
+		if ret != a.one {
+			t.Fatalf("findCircleNum(%v) = %v, want %v", p.one, ret, a.one)
+		}
+		if ret1 := findCircleNum1(p.one); ret1 != a.one {
+			t.Fatalf("findCircleNum1(%v) = %v, want %v", p.one, ret1, a.one)
+		}
+	}
+	fmt.Printf("\n\n\n")
+}
